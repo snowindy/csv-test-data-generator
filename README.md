@@ -6,10 +6,10 @@ When you generate test data online at http://www.convertcsv.com/generate-test-da
 
 ##Usage:
 
-node generator.js COLUMNS_DEFINITION NUMBER_OF_ROWS OUT_FILE
-COLUMNS_DEFINITION - columns definition from http://www.convertcsv.com/generate-test-data.htm (or see below "Allowed Keywords")
-NUMBER_OF_ROWS - number of rows to generate
-OUT_FILE - output file path
+```node generator.js COLUMNS_DEFINITION NUMBER_OF_ROWS OUT_FILE```
+`COLUMNS_DEFINITION` - columns definition from http://www.convertcsv.com/generate-test-data.htm (or see below "Allowed Keywords")
+`NUMBER_OF_ROWS` - number of rows to generate
+`OUT_FILE` - output file path
 
 ###Usage example:
 
