@@ -1,4 +1,4 @@
-# Test data generator
+# CSV test data generator
 
 This is command line tool test data generator project based on online solution http://www.convertcsv.com/generate-test-data.htm.
 
