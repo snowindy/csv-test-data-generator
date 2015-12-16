@@ -70,17 +70,25 @@ function genData(columns, rows)
                    break;
                 case 'date' :
                    n=hdr[k].arg;
+				   
+				   function getRandomInt(min, max) {
+				      return Math.floor(Math.random() * (max - min + 1)) + min;
+				   }
+				   
+				   // MySQL Timestamp-compatible year value
+				   var year = getRandomInt(1971, 2037);
+				   
                    switch(n) {
-                      case '2' : s += chance.date({string: true, american: false}).toCsv(CSV.delimiter);break;
-                      case '3' : t = chance.date();
+                      case '2' : s += chance.date({string: true, american: false, year: year}).toCsv(CSV.delimiter);break;
+                      case '3' : t = chance.date({year: year});
                                t = t.getFullYear() + '/' + ("0" + (t.getMonth() + 1)).slice(-2) + '/' + ("0" + t.getDate()).slice(-2);
                                s += t;
                                break;
-                      case '4' : t = chance.date();
+                      case '4' : t = chance.date({year: year});
                                t = t.getFullYear() + ("0" + (t.getMonth() + 1)).slice(-2) + ("0" + t.getDate()).slice(-2);
                                s += t;
                                break;
-                      default: s += chance.date({string: true}).toCsv(CSV.delimiter);break;
+                      default: s += chance.date({string: true, year: year}).toCsv(CSV.delimiter);break;
                    }
                    break;
                    
