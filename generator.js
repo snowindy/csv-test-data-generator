@@ -5,6 +5,7 @@ eval(fs.readFileSync('lib/strsup.js')+'');
 
 var chance = new chanceModule.Chance();
 var CSV = {delimiter: ","};
+var sequenceNumber = 0;
 
 // Taken from http://www.convertcsv.com/generate-test-data.htm
 function genData(columns, rows)
@@ -177,7 +178,9 @@ function genData(columns, rows)
                    }
                    break;
                 case 'seq' :
-                   s += hdr[k].seqObj.next();
+                   sequenceNumber += 1;
+	           s += sequenceNumber.toString();
+                   //s += hdr[k].seqObj.next();
                    //s += seqobj.next();
                    break;
                 case 'state' :
@@ -237,14 +240,22 @@ if (fs.existsSync(outputFileName)){
 	fs.unlinkSync(outputFileName);
 }
 
-for(var i = 0; i <dataRowsRequired; i = i + chunkSize){
-	var size = chunkSize>dataRowsRequired? dataRowsRequired: chunkSize;
-	var csvStringPart = genData(columns, size);
-	console.log("Appending csv part ", i ," of size ", size);
-	fs.appendFile(outputFileName, csvStringPart, function (err) {
-		if(err) {
-			return console.log(err);
-		}
-		console.log("Appended csv part ", i ," of size ", size);
-	});
+// create a loop so that calls to fs.appendFile can be done in a sequential fashion.
+var loop = function (index) {
+	if(index >= dataRowsRequired) {
+		console.log('file generated');
+	} else {
+		let remainder = dataRowsRequired - index;
+		let size = chunkSize>remainder ? remainder: chunkSize;
+		let csvStringPart = genData(columns, size);
+		console.log("Appending csv part ", index ," of size ", size);
+		fs.appendFile(outputFileName, csvStringPart, function (err) {
+			if(err) {
+				return console.log(err);
+			}
+			loop(index + chunkSize);
+		});
+	}
 }
+
+loop(0);  // start asynch loop
