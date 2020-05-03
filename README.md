@@ -14,7 +14,7 @@ When you generate test data online at http://www.convertcsv.com/generate-test-da
 
 `OUT_FILE` - output file path
 
-###Usage example:
+### Command example:
 
 ```
 node generator.js "email,first,last,age,street,city,state,zip,digid,date(3),latitude,longitude,pick(RED|BLUE|YELLOW|GREEN|WHITE),string" 10000 out1.csv
