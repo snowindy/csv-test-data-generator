@@ -4,9 +4,9 @@ This is command line tool test data generator project based on online solution h
 
 When you generate test data online at http://www.convertcsv.com/generate-test-data.htm your browser can only generate up to 50-100K rows, then it hangs. This tool is a good alternative if you want to generate MILLIONS test data rows, using the same definition syntax as used in online web service.
 
-##Usage:
+ ## Usage
 
-```node generator.js COLUMNS_DEFINITION NUMBER_OF_ROWS OUT_FILE```
+```node generator.js <COLUMNS_DEFINITION NUMBER_OF_ROWS> <OUT_FILE>```
 
 `COLUMNS_DEFINITION` - columns definition from http://www.convertcsv.com/generate-test-data.htm (or see below "Allowed Keywords")
 
@@ -16,10 +16,12 @@ When you generate test data online at http://www.convertcsv.com/generate-test-da
 
 ###Usage example:
 
-```node generator.js "email,first,last,age,street,city,state,zip,digid,date(3),latitude,longitude,pick(RED|BLUE|YELLOW|GREEN|WHITE),string" 10000 out1.csv```
+```
+node generator.js "email,first,last,age,street,city,state,zip,digid,date(3),latitude,longitude,pick(RED|BLUE|YELLOW|GREEN|WHITE),string" 10000 out1.csv
+```
 
 
-##Allowed Keywords
+## Allowed Keywords
 
 Keyword:			Description
 
