@@ -228,17 +228,26 @@ function genData(columns, rows)
     return s;
 }
 
-var dataRowsRequired = process.argv[3];
+var dataRowsRequired = process.argv[4];
 var chunkSize = 1000;
-var columns = process.argv[2].split(',');
+var columns = process.argv[3].split(',');
+var headers = process.argv[2];
 
 console.log('dataRowsRequired', dataRowsRequired);
+console.log('headers', headers);
 console.log('columns', columns);
 
-var outputFileName = process.argv.length > 4? process.argv[4]: 'out.csv';
+var outputFileName = process.argv.length > 4? process.argv[5]: 'out.csv';
 if (fs.existsSync(outputFileName)){
 	fs.unlinkSync(outputFileName);
 }
+// append header to file
+console.log("Appending headers");
+fs.appendFile(outputFileName, headers+"\n", function (err) {
+   if(err) {
+      return console.log(err);
+   }
+});
 
 // create a loop so that calls to fs.appendFile can be done in a sequential fashion.
 var loop = function (index) {
