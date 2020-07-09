@@ -6,7 +6,9 @@ When you generate test data online at http://www.convertcsv.com/generate-test-da
 
  ## Usage
 
-```node generator.js <COLUMNS_DEFINITION NUMBER_OF_ROWS> <OUT_FILE>```
+```node generator.js <HEADERS> <COLUMNS_DEFINITION NUMBER_OF_ROWS> <OUT_FILE>```
+
+`<HEADERS>` - list header of columns
 
 `COLUMNS_DEFINITION` - columns definition from http://www.convertcsv.com/generate-test-data.htm (or see below "Allowed Keywords")
 
@@ -17,7 +19,7 @@ When you generate test data online at http://www.convertcsv.com/generate-test-da
 ### Command example:
 
 ```
-node generator.js "email,first,last,age,street,city,state,zip,digid,date(3),latitude,longitude,pick(RED|BLUE|YELLOW|GREEN|WHITE),string" 10000 out1.csv
+node generator.js "email,firstname,lastname,age,street,city,state,zip,digid,birthday,lat,long,farvorite,code" "email,first,last,age,street,city,state,zip,digid,date(3),latitude,longitude,pick(RED|BLUE|YELLOW|GREEN|WHITE),string" 10000 out1.csv
 ```
 
 
